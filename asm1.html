@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="c:\hunm1nzzzzz\hoc\imudl\asm\asm.css">
+    <style>
+        
+        :root {
+            --primary-black: #111111;
+            --gray-bg: #f5f5f5;
+            --gray-text: #707070;
+            --border-color: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            color: var(--primary-black);
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Top Notification Bar */
+        .top-banner {
+            background-color: var(--gray-bg);
+            text-align: center;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* .top-banner a {
+            font-weight: 600;
+            text-decoration: underline;
+        } */
+
+        /* Header / Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo svg {
+            width: 60px;
+            height: 22px;
+            fill: var(--primary-black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 600;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-black);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            background-color: var(--gray-bg);
+            border-radius: 50px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 180px;
+            transition: width 0.3s;
+        }
+
+        .search-box:focus-within {
+            width: 250px;
+            background-color: #e5e5e5;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .icon-btn1 {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.2s;
+            align-items: center;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--gray-bg);
+        }
+
+        /* Main Catalog Layout (Sidebar + Products) */
+        .catalog-container {
+            max-width: 1800px;
+            margin: 20px auto 60px auto;
+            padding: 0 40px;
+        }
+
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 10px 0;
+        }
+
+        .catalog-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+     .catalog-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+    .sidebar {
+        position: sticky;
+        top: 80px;   
+        height: calc(100vh - 100px);  
+        overflow-y: auto;             
+        padding-right: 15px;
+        
+        min-width: 240px; 
+    }
+
+    .sidebar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+            }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-list li a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--primary-black);
+            transition: color 0.2s;
+        }
+
+        .category-list li a:hover, .category-list li.active a {
+            color: var(--gray-text);
+        }
+
+        .filter-dropdown-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-dropdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .filter-dropdown-item i {
+            font-size: 12px;
+        }
+
+        /* Product Grid Area */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .product-image {
+            width: 25%%;
+            height: 420px;
+            background-color: var(--gray-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-black);
+        }
+
+        .product-category {
+            font-size: 14px;
+            color: var(--gray-text);
+            margin-top: 4px;
+        }
+
+        .product-price {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Contact & Introduction Footer Section */
+        .contact-footer {
+            background-color: var(--primary-black);
+            color: #fff;
+            padding: 60px 40px 30px 40px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col p, .footer-col ul li a {
+            font-size: 14px;
+            color: #7e7e7e;
+            line-height: 1.8;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #7e7e7e;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            background-color: #333;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        /* .sidebar {
+            position: sticky;
+            top: 20px; 
+        height: fit-content; 
+        } */
+        .social-icons a:hover {
+            background-color: #fff;
+            color: var(--primary-black);
+        }
+
+.product-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.view-btn {
+    background-color: var(--primary-black);
+    color: #fff;
+    border: none;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.view-btn:hover {
+    background-color: var(--gray-text);
+    transform: translateY(-2px);
+}
+
+        /* Responsive Mobile */
+        @media (max-width: 1024px) {
+            .catalog-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links, .search-box {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <span> <a href="c:\hunm1nzzzzz\hoc\imudl\asm\login.html"> Đăng ký tài khoản</a></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.707 5.293c-.39-.39-1.023-.39-1.414 0l-9.192 9.192-4.243-4.243c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414l5 5c.195.195.451.293.707.293s.512-.098.707-.293l9.9-9.9c.39-.39.39-1.023 0-1.414z"/></svg>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="c:\hunm1nzzzzz\hoc\imudl\asm\asm1.html">Products</a></li>
+                <li><a href="c:\hunm1nzzzzz\hoc\imudl\asm\cart.html">Cart</a></li>
+                <li><a href="c:\hunm1nzzzzz\hoc\imudl\asm\login.html">Login</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass" style="color: var(--gray-text); font-size: 14px;"></i>
+                    <input type="text" placeholder="Tìm kiếm">
+                </div>
+                <button class="icon-btn"><i class="fa-regular fa-heart"></i></button>
+                <a href="c:\hunm1nzzzzz\hoc\imudl\asm\cart.html" class="fa-solid fa-bag-shopping"></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Catalog Section with Sidebar Filter & Product Grid -->
+    <main class="catalog-container">
+        <div class="catalog-header">
+            <h1 class="catalog-title">Men's Shoes (1399)</h1>
+        </div>
+
+        <div class="catalog-layout">
+            <!-- sidebar -->
+            <aside class="sidebar">
+                <ul class="category-list">
+                    <li><a href="#">Lifestyle</a></li>
+                    <li><a href="#">Jordan</a></li>
+                    <li><a href="#">Running</a></li>
+                    <li><a href="#">Basketball</a></li>
+                    <li><a href="#">American Football</a></li>
+                    <li><a href="#">Football</a></li>
+                    <li><a href="#">Training & Gym</a></li>
+                    <li><a href="#">Skateboarding</a></li>
+                    <li><a href="#">Baseball</a></li>
+                    <li><a href="#">Golf</a></li>
+                    <li><a href="#">Tennis</a></li>
+                    <li><a href="#">Athletics</a></li>
+                    <li><a href="#">Walking</a></li>
+                </ul>
+
+                <div class="filter-dropdown-group">
+                    <div class="filter-dropdown-item">
+                        <span>Gender (1)</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-dropdown-item">
+                        <span>Shop By Price</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-dropdown-item">
+                        <span>Sale & Offers</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-dropdown-item">
+                        <span>Size</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product -->
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="c:\hunm1nzzzzz\hoc\imudl\asm\photo-1542291026-7eec264c27ff.avif" alt="Nike Air Force 1">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">Nike Air Force 1 '07</h3>
+                            <p class="product-category">Men's Shoes</p>
+                            <!-- <button class="icon-btn1"></i>View</button> -->
+                        </div>
+                        <!-- <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div> -->
+                        <div class="product-price">3.200.000₫</div>
+                    </div>
+                    <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="c:\hunm1nzzzzz\hoc\imudl\asm\photo-1515955656352-a1fa3ffcd111.avif" alt="Air Jordan 1 Low">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">Air Jordan 1 Low</h3>
+                            <p class="product-category">Men's Shoes</p>
+                        </div>
+                        <div class="product-price">3.500.000₫</div>
+                    </div> 
+                    <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="c:\hunm1nzzzzz\hoc\imudl\asm\photo-1539185441755-769473a23570.avif" alt="Nike Pegasus 40">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">Nike Pegasus 40</h3>
+                            <p class="product-category">Men's Running Shoes</p>
+                        </div>
+                        <div class="product-price">3.900.000₫</div>
+                    </div>
+                     <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="c:\hunm1nzzzzz\hoc\imudl\asm\photo-1584735935682-2f2b69dff9d2.avif" alt="Nike Air Max Pulse">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">Nike Air Max Pulse</h3>
+                            <p class="product-category">Men's Shoes</p>
+                        </div>
+                        <div class="product-price">4.100.000₫</div>
+                    </div>
+                     <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="c:\hunm1nzzzzz\hoc\imudl\asm\photo-1595950653106-6c9ebd614d3a.avif" alt="Nike Blazer Mid '77">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">Nike Blazer Mid '77 Vintage</h3>
+                            <p class="product-category">Men's Shoes</p>
+                        </div>
+                        <div class="product-price">2.900.000₫</div>
+                    </div>
+                     <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="c:\hunm1nzzzzz\hoc\imudl\asm\photo-1608231387042-66d1773070a5.avif" alt="Nike Dunk Low Retro">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">Nike Dunk Low Retro</h3>
+                            <p class="product-category">Men's Shoes</p>
+                        </div>
+                        <div class="product-price">3.200.000₫</div>
+                    </div>
+                     <div class="product-btn-container">
+                            <button class="view-btn">View</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact & Introduction Footer Section -->
+    <footer class="contact-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Về Nike</h4>
+                <p>Trang web này được xây dựng nhằm mô phỏng giao diện và trải nghiệm mua sắm hiện đại của thương hiệu Nike, mang lại sự tiện lợi và phong cách thời trang thể thao đỉnh cao.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Trạng thái đơn hàng</a></li>
+                    <li><a href="#">Giao hàng & Vận chuyển</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Phương thức thanh toán</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Liên Hệ (Contact)</h4>
+                <p><strong>Hotline:</strong> 0938899062 (8:00 - 22:00)</p>
+                <p><strong>Email:</strong> hehe.vn</p>
+                <p><strong>Địa chỉ:</strong> Quận 10, Thành phố Hồ Chí Minh</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kết Nối Với Chúng Tôi</h4>
+                <p>Theo dõi các kênh mạng xã hội để cập nhật những mẫu sneaker mới nhất.</p>
+                <div class="social-icons" style="margin-top: 15px;">
+                    <a href="https://www.facebook.com/nike"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/nike/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nike Clone, Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
